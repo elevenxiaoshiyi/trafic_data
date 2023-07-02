@@ -1,0 +1,28 @@
+import requests
+
+def get_traffic_information():
+    """
+    This function retrieves traffic information from a specified source.
+    
+    Returns:
+    str: The traffic information
+    """
+    try:
+        # Make a request to the traffic information API
+        response = requests.get("https://api.example.com/traffic")
+        
+        # Check if the request was successful
+        if response.status_code == 200:
+            # Extract the traffic information from the response
+            traffic_info = response.json()["traffic_info"]
+            
+            # Return the traffic information
+            return traffic_info
+        else:
+            # Log the error
+            print(f"Error: Failed to retrieve traffic information. Status code: {response.status_code}")
+            return ""
+    except requests.exceptions.RequestException as e:
+        # Log the error
+        print(f"Error: {e}")
+        return ""
